@@ -10,10 +10,6 @@ void main() {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
     ),
   );
 }
