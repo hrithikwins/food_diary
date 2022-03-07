@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../modules/home/add_product/bindings/add_product_binding.dart';
-import '../modules/home/add_product/views/add_product_view.dart';
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
+import '../modules/home/add_product/bindings/add_product.binding.dart';
+import '../modules/home/add_product/views/add_product.view.dart';
+import '../modules/home/bindings/home.binding.dart';
+import '../modules/home/views/home.view.dart';
 
 part 'app_routes.dart';
 

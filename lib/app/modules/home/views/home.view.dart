@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:food_diary/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../controllers/home_controller.dart';
+import 'package:food_diary/app/routes/app_pages.dart';
+
+import '../controllers/home.controller.dart';
 
 class HomeView extends GetView<HomeController> {
   @override

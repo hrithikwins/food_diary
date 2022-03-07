@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/add_product_controller.dart';
+import '../controllers/add_product.controller.dart';
 
 class AddProductView extends GetView<AddProductController> {
   @override
