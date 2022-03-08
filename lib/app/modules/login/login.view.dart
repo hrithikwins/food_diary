@@ -9,15 +9,24 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LoginView'),
+        title: Text('Food Diary'),
         centerTitle: true,
       ),
+      //login with google
       body: Center(
-        child: Text(
-          'LoginView is working',
-          style: TextStyle(fontSize: 20),
+        child: ElevatedButton(
+          child: Text('Login with Google'),
+          onPressed: () {
+            controller.loginWithGoogle();
+          },
         ),
       ),
+      // body: Center(
+      //   child: Text(
+      //     'LoginView is working',
+      //     style: TextStyle(fontSize: 20),
+      //   ),
+      // ),
     );
   }
 }
