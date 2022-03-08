@@ -12,7 +12,10 @@ import '../../routes/app_pages.dart';
 class LoginController extends GetxController {
   //TODO: Implement LoginController
 
-  final count = 0.obs;
+  var storageBox = GetStorage();
+  final name = TextEditingController();
+  final phoneNumber = TextEditingController();
+  final email = TextEditingController();
 
   @override
   void onInit() {
@@ -26,8 +29,14 @@ class LoginController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 
-  void login() {}
-
+  void login() {
+    storageBox.write("userDetails", {
+      "name": name.text,
+      "phoneNumber": phoneNumber.text,
+      "email": email.text,
+    });
+    storageBox.write("isLoggedIn", "true");
+    Get.offAllNamed(Routes.HOME);
+  }
 }

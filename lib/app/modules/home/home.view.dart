@@ -26,7 +26,30 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Obx(
         () => Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              padding: EdgeInsets.only(
+                left: 20,
+              ),
+              child: Text(
+                "Hii " + controller.userDetails.value["name"].toString(),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            //checking for food info
+            controller.foodList.isEmpty
+                ? SizedBox(
+                    height: Get.height * 0.8,
+                    child: Center(
+                      child: "Click on the button below to create your entry"
+                          .text
+                          .gray500
+                          .make(),
+                    ),
+                  )
+                : "".text.make(),
             //food card
             for (var foodInfo in controller.foodList)
               InkWell(
@@ -189,6 +212,7 @@ class HomeView extends GetView<HomeController> {
                   ],
                 ),
               ),
+            //end the loop above
           ],
         ),
       ),
