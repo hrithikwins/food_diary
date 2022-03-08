@@ -15,9 +15,9 @@ class LoginView extends GetView<LoginController> {
       //login with google
       body: Center(
         child: ElevatedButton(
-          child: Text('Login with Google'),
+          child: Text('Login'),
           onPressed: () {
-            controller.loginWithGoogle();
+            controller.login();
           },
         ),
       ),
