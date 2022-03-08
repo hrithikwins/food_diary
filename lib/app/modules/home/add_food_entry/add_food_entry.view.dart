@@ -48,15 +48,16 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
             ),
             20.heightBox,
             ElevatedButton(
-              onPressed: () => {
-                homeController.foodList.add({
-                  "name": controller.foodName.text,
-                  "carbs": controller.carbs.text,
-                  "proteins": controller.proteins.text,
-                  "nutrients": controller.nutrients.text,
-                }),
-                Get.snackbar("Added ", "Food"),
-              },
+              onPressed: controller.addFood,
+              //  () => {
+              //   homeController.foodList.add({
+              //     "name": controller.foodName.text,
+              //     "carbs": controller.carbs.text,
+              //     "proteins": controller.proteins.text,
+              //     "nutrients": controller.nutrients.text,
+              // }),
+              //   Get.snackbar("Added ", "Food"),
+              // },
               child: Text("ADD"),
             ),
           ],
