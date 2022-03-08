@@ -6,6 +6,10 @@ import '../modules/home/food_details/food_details.binding.dart';
 import '../modules/home/food_details/food_details.view.dart';
 import '../modules/home/home.binding.dart';
 import '../modules/home/home.view.dart';
+import '../modules/login/login.binding.dart';
+import '../modules/login/login.view.dart';
+import '../modules/splash/splash.binding.dart';
+import '../modules/splash/splash.view.dart';
 
 part 'app_routes.dart';
 
@@ -31,6 +35,16 @@ class AppPages {
           binding: FoodDetailsBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
