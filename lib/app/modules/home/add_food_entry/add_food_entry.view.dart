@@ -15,52 +15,92 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
         title: Text('Add Food Details'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: controller.foodName,
-              decoration: InputDecoration(
-                label: Text("Food Name"),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 18.0,
+            vertical: 20,
+          ),
+          child: Column(
+            children: [
+              //pick image
+              InkWell(
+                onTap: () => controller.uploadImage(),
+                child: Stack(
+                  children: [
+                    Obx(
+                      () => CircleAvatar(
+                        radius: 100,
+                        backgroundImage: NetworkImage(
+                          controller.uploadedImageUrl.value,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      child: Container(
+                        padding: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.camera_rounded,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Get.to(AddFoodEntryView());
+                            }),
+                      ),
+                      bottom: 10,
+                      right: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            20.heightBox,
-            TextFormField(
-              controller: controller.carbs,
-              decoration: InputDecoration(
-                label: Text("Carbs(in gms)"),
+              TextFormField(
+                controller: controller.foodName,
+                decoration: InputDecoration(
+                  label: Text("Food Name"),
+                ),
               ),
-            ),
-            20.heightBox,
-            TextFormField(
-              controller: controller.proteins,
-              decoration: InputDecoration(
-                label: Text("Proteins(in gms)"),
+              20.heightBox,
+              TextFormField(
+                controller: controller.carbs,
+                decoration: InputDecoration(
+                  label: Text("Carbs(in gms)"),
+                ),
               ),
-            ),
-            20.heightBox,
-            TextFormField(
-              controller: controller.nutrients,
-              decoration: InputDecoration(
-                label: Text("Nutrients (in gms)"),
+              20.heightBox,
+              TextFormField(
+                controller: controller.proteins,
+                decoration: InputDecoration(
+                  label: Text("Proteins(in gms)"),
+                ),
               ),
-            ),
-            20.heightBox,
-            ElevatedButton(
-              onPressed: controller.addFood,
-              //  () => {
-              //   homeController.foodList.add({
-              //     "name": controller.foodName.text,
-              //     "carbs": controller.carbs.text,
-              //     "proteins": controller.proteins.text,
-              //     "nutrients": controller.nutrients.text,
-              // }),
-              //   Get.snackbar("Added ", "Food"),
-              // },
-              child: Text("ADD"),
-            ),
-          ],
+              20.heightBox,
+              TextFormField(
+                controller: controller.nutrients,
+                decoration: InputDecoration(
+                  label: Text("Nutrients (in gms)"),
+                ),
+              ),
+              20.heightBox,
+              ElevatedButton(
+                onPressed: controller.addFood,
+                //  () => {
+                //   homeController.foodList.add({
+                //     "name": controller.foodName.text,
+                //     "carbs": controller.carbs.text,
+                //     "proteins": controller.proteins.text,
+                //     "nutrients": controller.nutrients.text,
+                // }),
+                //   Get.snackbar("Added ", "Food"),
+                // },
+                child: Text("ADD"),
+              ),
+            ],
+          ),
         ),
       ),
     );
