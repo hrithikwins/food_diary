@@ -31,7 +31,7 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                     Obx(
                       () => CircleAvatar(
                         radius: 100,
-                        backgroundImage: NetworkImage(
+                        backgroundImage: AssetImage(
                           controller.uploadedImageUrl.value,
                         ),
                       ),
@@ -43,14 +43,10 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                           color: Colors.orangeAccent,
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        child: IconButton(
-                            icon: Icon(
-                              Icons.camera_rounded,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              Get.to(AddFoodEntryView());
-                            }),
+                        child: Icon(
+                          Icons.camera_rounded,
+                          color: Colors.white,
+                        ),
                       ),
                       bottom: 10,
                       right: 10,

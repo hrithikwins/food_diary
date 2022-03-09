@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_diary/utils/resources.dart';
 import 'package:get/get.dart';
 
 // Import the firebase_core and cloud_firestore plugin
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class AddFoodEntryController extends GetxController {
   //TODO: Implement AddFoodEntryController
@@ -14,14 +18,30 @@ class AddFoodEntryController extends GetxController {
   var carbs = TextEditingController();
   var proteins = TextEditingController();
   var nutrients = TextEditingController();
-  Rx<String> uploadedImageUrl =
-      'https://imgs.search.brave.com/qM-fEJzI5K7J1a4C_WO0kMKmHELxjJgQOptETRJSD8U/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9ib3N0/b25hYmNkLm9yZy93/cC1jb250ZW50L3Vw/bG9hZHMvMjAxNy8w/OS9Gb29kLUljb24t/MDEucG5n'
-          .obs;
+  Rx<String> uploadedImageUrl = Resources.foodUpload.obs;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 // Create a CollectionReference called users that references the firestore collection
   CollectionReference foodCollection =
       FirebaseFirestore.instance.collection('food');
+
+  final ImagePicker _picker = ImagePicker();
+  late XFile? photo;
+  final isPhoto = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
+  void onClose() {}
+  void increment() => count.value++;
 
   Future<void> addFood() {
     // Call the user's CollectionReference to add a new user
@@ -38,21 +58,55 @@ class AddFoodEntryController extends GetxController {
             (error) => Get.snackbar("Failed to add food", error.toString()));
   }
 
-  @override
-  void onInit() {
-    super.onInit();
+  uploadImage() async {
+    Get.bottomSheet(imagePicketComponent());
+    // final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  pickImageFromGallery() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
+    if (photo != null) {
+      isPhoto.value = true;
+    }
+    // gallery image
   }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  pickImageFromCamera() async {
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null) {
+      isPhoto.value = true;
+    }
+  }
 
-  uploadImage() {
-    Get.snackbar("image", "uploaded");
+  imagePicketComponent() {
+    return Container(
+      color: Colors.white,
+      child: SizedBox(
+        width: Get.width,
+        height: 200,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () => pickImageFromGallery(),
+              child: Container(
+                padding: EdgeInsets.all(12),
+                color: Colors.white,
+                child: Icon(Icons.image),
+              ),
+            ),
+            12.heightBox,
+            InkWell(
+              onTap: () => pickImageFromCamera(),
+              child: Container(
+                padding: EdgeInsets.all(12),
+                color: Colors.white,
+                child: Icon(Icons.camera),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
