@@ -28,7 +28,7 @@ dev_dependencies:
 
 flutter:
     assets:
-        - assets/images
+        - assets/images/
     uses-material-design: true
 
 get_cli:
