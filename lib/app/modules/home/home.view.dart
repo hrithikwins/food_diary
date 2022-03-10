@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,6 +6,46 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../../routes/app_pages.dart';
 import 'home.controller.dart';
+
+
+// class HomeView extends StatefulWidget {
+//   @override
+//   _HomeViewState createState() => _HomeViewState();
+// }
+
+// class _HomeViewState extends State<HomeView> {
+//   final Stream<QuerySnapshot> _usersStream =
+//       FirebaseFirestore.instance.collection('food').snapshots();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<QuerySnapshot>(
+//       stream: _usersStream,
+//       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//         if (snapshot.hasError) {
+//           return Text('Something went wrong');
+//         }
+
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Text("Loading");
+//         }
+
+//         return Scaffold(
+//           body: ListView(
+//             children: snapshot.data!.docs.map((DocumentSnapshot document) {
+//               Map<String, dynamic> data =
+//                   document.data()! as Map<String, dynamic>;
+//               return ListTile(
+//                 title: Text(data['name']),
+//                 subtitle: Text(data['carbs']),
+//               );
+//             }).toList(),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
 
 class HomeView extends GetView<HomeController> {
   @override
@@ -193,14 +234,14 @@ class HomeView extends GetView<HomeController> {
                                                 fontWeight: FontWeight.w300,
                                               ),
                                             ),
-                                            Text(
-                                              foodInfo["info"].toString(),
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.lightBlueAccent,
-                                                fontWeight: FontWeight.w300,
-                                              ),
-                                            ),
+                                            // Text(
+                                            //   foodInfo["info"].toString(),
+                                            //   style: TextStyle(
+                                            //     fontSize: 12,
+                                            //     color: Colors.lightBlueAccent,
+                                            //     fontWeight: FontWeight.w300,
+                                            //   ),
+                                            // ),
                                           ],
                                         ),
                                       )
