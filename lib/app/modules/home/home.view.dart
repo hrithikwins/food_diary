@@ -203,7 +203,7 @@ class HomeView extends GetView<HomeController> {
                                                       ),
                                                       child: Center(
                                                         child: Text(
-                                                          foodInfo["carbs"]
+                                                          foodInfo["fat"]
                                                               .toString(),
                                                           style: TextStyle(
                                                             fontSize: 10,
@@ -219,7 +219,8 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                             ),
                                             Text(
-                                              foodInfo["proteins"].toString(),
+                                              foodInfo["carbohydrates"]
+                                                  .toString(),
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.black87,
@@ -227,7 +228,7 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                             ),
                                             Text(
-                                              foodInfo["nutrients"].toString(),
+                                              foodInfo["calories"].toString(),
                                               style: TextStyle(
                                                 fontSize: 12,
                                                 color: Colors.black54,

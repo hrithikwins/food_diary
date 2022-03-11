@@ -5,13 +5,12 @@ import 'package:food_diary/utils/resources.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../components/image_picker_component.dart';
 import 'add_food_entry.controller.dart';
 
 //=============================================================================
 //
 //                                         ADD FOOD ENTRY
-//                   ------------------- widgets -------------------
-//                                              imagePickerBottomSheet
 //=============================================================================
 class AddFoodEntryView extends GetView<AddFoodEntryController> {
   HomeController homeController = Get.put(HomeController());
@@ -62,7 +61,39 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                 ),
               ),
               10.heightBox,
+              Obx(
+                () => DropdownButtonFormField(
+                  hint: Text(
+                    'Select Food',
+                  ),
+                  onChanged: (newValue) {
+                    controller.getFoodDetailsBasedOnDropDown(newValue);
+                  },
+                  // value: controller.foodDetailsData.value.name,
+                  value: "Select Food",
+                  items: [
+                    DropdownMenuItem(
+                      child: Text("Select Food"),
+                      value: "Select Food",
+                    ),
+                    for (var index = 0;
+                        index < controller.foodDetailsData.value.foods!.length;
+                        index++)
+                      DropdownMenuItem(
+                        child: Text(controller.foodDetailsData.value.foods!
+                            .elementAt(index)
+                            .name
+                            .toString()),
+                        value: controller.foodDetailsData.value.foods!
+                            .elementAt(index)
+                            .name
+                            .toString(),
+                      ),
+                  ],
+                ),
+              ),
               TextFormField(
+                enabled: false,
                 controller: controller.foodName,
                 decoration: InputDecoration(
                   label: Text("Food Name"),
@@ -70,26 +101,29 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.carbs,
+                enabled: false,
+                controller: controller.calories,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Carbs(in gms)"),
+                  label: Text("Calories"),
                 ),
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.proteins,
+                enabled: false,
+                controller: controller.fat,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Proteins(in gms)"),
+                  label: Text("Fats(in gms)"),
                 ),
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.nutrients,
+                enabled: false,
+                controller: controller.carbohydrates,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Nutrients (in gms)"),
+                  label: Text("Carbohydrates(in gms)"),
                 ),
               ),
               20.heightBox,
@@ -103,39 +137,4 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
       ),
     );
   }
-}
-
-Widget imagePickerBottomSheet() {
-  return GetBuilder<AddFoodEntryController>(
-    init: AddFoodEntryController(),
-    builder: (controller) => Container(
-      color: Colors.white,
-      child: SizedBox(
-        width: Get.width,
-        height: 200,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
-              onTap: () => controller.pickImageFromGallery(),
-              child: Container(
-                padding: EdgeInsets.all(12),
-                color: Colors.white,
-                child: Icon(Icons.image),
-              ),
-            ),
-            12.heightBox,
-            InkWell(
-              onTap: () => controller.pickImageFromCamera(),
-              child: Container(
-                padding: EdgeInsets.all(12),
-                color: Colors.white,
-                child: Icon(Icons.camera),
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
