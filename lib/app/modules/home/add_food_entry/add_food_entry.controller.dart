@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_diary/app/modules/home/food_details.model.dart';
+import 'package:food_diary/app/modules/home/food_details/food_details.model.dart';
 import 'package:food_diary/app/modules/home/home.controller.dart';
 import 'package:get/get.dart';
 
