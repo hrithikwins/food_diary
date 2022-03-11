@@ -5,9 +5,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_diary/app/modules/home/food_details.model.dart';
-import 'package:food_diary/utils/resources.dart';
 import 'package:get/get.dart';
 
 // Import the firebase_core and cloud_firestore plugin
@@ -22,9 +20,9 @@ class AddFoodEntryController extends GetxController {
 
   final count = 0.obs;
   var foodName = TextEditingController();
-  var carbs = TextEditingController();
-  var proteins = TextEditingController();
-  var nutrients = TextEditingController();
+  var calories = TextEditingController();
+  var fat = TextEditingController();
+  var carbohydrates = TextEditingController();
   Rx<String> uploadedImageUrl = "".obs;
   late File uploadedImageFile;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -71,6 +69,7 @@ class AddFoodEntryController extends GetxController {
   }
 
   Future<void> addFood() async {
+    //starting dialog
     Get.dialog(
       Center(
         child: SizedBox(
@@ -89,17 +88,17 @@ class AddFoodEntryController extends GetxController {
         .add({
           'imageUrl': uploadedImageUrl.value,
           'name': foodName.text,
-          'carbs': carbs.text,
-          'proteins': proteins.text,
-          'nutrients': nutrients.text,
+          'calories': calories.text,
+          'fat': fat.text,
+          'carbohydrates': carbohydrates.text,
         })
         .then((value) => {
+              Get.back(),
               Get.snackbar("Food Added", "Successfully added food"),
               resetFields(),
             })
         .catchError(
             (error) => Get.snackbar("Failed to add food", error.toString()));
-    Get.back();
   }
 
   pickImageFromGallery() async {
@@ -142,9 +141,8 @@ class AddFoodEntryController extends GetxController {
             .getDownloadURL();
         log("--------------------------");
         log(uploadedImageUrl.value);
-        // } on firebase_core.FirebaseException catch (e) {
       } catch (e) {
-        // e.g, e.code == 'canceled'
+        Get.snackbar("Error", e.toString());
       }
       log("--------------------------");
       log("uploadFileToServer");
@@ -153,11 +151,33 @@ class AddFoodEntryController extends GetxController {
 
   resetFields() {
     isPhoto.value = false;
+
     uploadedImageUrl.value = "";
     foodName.text = "";
-    carbs.text = "";
-    proteins.text = "";
-    nutrients.text = "";
+    calories.text = "";
+    fat.text = "";
+    carbohydrates.text = "";
+  }
+
+  void getFoodDetailsBasedOnDropDown(newValue) {
+    for (int i = 0; i < foodDetailsData.value.foods!.length; i++) {
+      if (foodDetailsData.value.foods?.elementAt(i).name == newValue) {
+        foodName.text = foodDetailsData.value.foods!.elementAt(i).name!;
+        calories.text =
+            foodDetailsData.value.foods!.elementAt(i).calories.toString();
+        fat.text = foodDetailsData.value.foods!.elementAt(i).fat.toString();
+        carbohydrates.text =
+            foodDetailsData.value.foods!.elementAt(i).carbohydrates.toString();
+      }
+    }
+
+    // var element = foodDetailsData.value.foods?.elementAt(0).name;
+    // if (element.name == newValue) {
+    //   foodName.text = element.name;
+    //   carbs.text = element.carbs;
+    //   proteins.text = element.proteins;
+    //   nutrients.text = element.nutrients;
+    // }
   }
 
   // Future<void> uploadFileToServer(file) async {

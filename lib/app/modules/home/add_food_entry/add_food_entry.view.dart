@@ -67,10 +67,7 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                     'Select Food',
                   ),
                   onChanged: (newValue) {
-                    // controller.foodDetailsData.value.elementAt(index) =
-                    //     (newValue.toString());
-                    // controller.getVehicleListByVendor();
-                    // print(controller.vendor.value);
+                    controller.getFoodDetailsBasedOnDropDown(newValue);
                   },
                   // value: controller.foodDetailsData.value.name,
                   value: "Select Food",
@@ -96,6 +93,7 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                 ),
               ),
               TextFormField(
+                enabled: false,
                 controller: controller.foodName,
                 decoration: InputDecoration(
                   label: Text("Food Name"),
@@ -103,26 +101,29 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.carbs,
+                enabled: false,
+                controller: controller.calories,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Carbs(in gms)"),
+                  label: Text("Calories"),
                 ),
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.proteins,
+                enabled: false,
+                controller: controller.fat,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Proteins(in gms)"),
+                  label: Text("Fats(in gms)"),
                 ),
               ),
               20.heightBox,
               TextFormField(
-                controller: controller.nutrients,
+                enabled: false,
+                controller: controller.carbohydrates,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  label: Text("Nutrients (in gms)"),
+                  label: Text("Carbohydrates(in gms)"),
                 ),
               ),
               20.heightBox,
