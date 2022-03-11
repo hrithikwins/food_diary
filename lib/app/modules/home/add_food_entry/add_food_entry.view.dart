@@ -61,6 +61,40 @@ class AddFoodEntryView extends GetView<AddFoodEntryController> {
                 ),
               ),
               10.heightBox,
+              Obx(
+                () => DropdownButtonFormField(
+                  hint: Text(
+                    'Select Food',
+                  ),
+                  onChanged: (newValue) {
+                    // controller.foodDetailsData.value.elementAt(index) =
+                    //     (newValue.toString());
+                    // controller.getVehicleListByVendor();
+                    // print(controller.vendor.value);
+                  },
+                  // value: controller.foodDetailsData.value.name,
+                  value: "Select Food",
+                  items: [
+                    DropdownMenuItem(
+                      child: Text("Select Food"),
+                      value: "Select Food",
+                    ),
+                    for (var index = 0;
+                        index < controller.foodDetailsData.value.foods!.length;
+                        index++)
+                      DropdownMenuItem(
+                        child: Text(controller.foodDetailsData.value.foods!
+                            .elementAt(index)
+                            .name
+                            .toString()),
+                        value: controller.foodDetailsData.value.foods!
+                            .elementAt(index)
+                            .name
+                            .toString(),
+                      ),
+                  ],
+                ),
+              ),
               TextFormField(
                 controller: controller.foodName,
                 decoration: InputDecoration(

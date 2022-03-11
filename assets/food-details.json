@@ -1,0 +1,70 @@
+{
+    "foods": [
+        {
+            "name": "Poha",
+            "calories": 394,
+            "fat": "0.6g",
+            "carbohydrates": "87g"
+        },
+        {
+            "name": "Rice",
+            "calories": 130,
+            "fat": "0.3g",
+            "carbohydrates": "28g"
+        },
+        {
+            "name": "Roti",
+            "calories": 63,
+            "fat": "3.7g",
+            "carbohydrates": "15.7g"
+        },
+        {
+            "name": "Burger",
+            "calories": 266,
+            "fat": "10.1g",
+            "carbohydrates": "30.3g"
+        },
+        {
+            "name": "Pizza",
+            "calories": 266,
+            "fat": "10g",
+            "carbohydrates": "33g"
+        },
+        {
+            "name": "French Fries",
+            "calories": 312,
+            "fat": "15g",
+            "carbohydrates": "41g"
+        },
+        {
+            "name": "Dosa",
+            "calories": 133,
+            "fat": "5.2g",
+            "carbohydrates": "18.8g"
+        },
+        {
+            "name": "Aloo Paratha",
+            "calories": 222,
+            "fat": "13.5g",
+            "carbohydrates": "22.7g"
+        },
+        {
+            "name": "Fish",
+            "calories": 206,
+            "fat": "12g",
+            "carbohydrates": "0g"
+        },
+        {
+            "name": "Chicken",
+            "calories": 239,
+            "fat": "14g",
+            "carbohydrates": "0g"
+        },
+        {
+            "name": "Udon",
+            "calories": 105,
+            "fat": "0.4g",
+            "carbohydrates": "21g"
+        }
+    ]
+}

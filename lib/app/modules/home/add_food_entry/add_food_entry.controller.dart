@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_diary/app/modules/home/food_details.model.dart';
 import 'package:food_diary/utils/resources.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +30,7 @@ class AddFoodEntryController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
+  final foodDetailsData = FoodDetails().obs;
 
 // Create a CollectionReference called users that references the firestore collection
   CollectionReference foodCollection =
@@ -48,12 +52,23 @@ class AddFoodEntryController extends GetxController {
 
   @override
   void onReady() {
+    feedValues();
     super.onReady();
   }
 
   @override
   void onClose() {}
   void increment() => count.value++;
+
+  loadJson() {
+    return rootBundle.loadString("assets/food-details.json");
+  }
+
+  feedValues() async {
+    var feedLoadedData = await loadJson();
+    foodDetailsData.value = FoodDetails.fromJson(jsonDecode(feedLoadedData));
+    print("feeded value");
+  }
 
   Future<void> addFood() async {
     Get.dialog(
