@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_diary/app/modules/home/food_details.model.dart';
+import 'package:food_diary/app/modules/home/home.controller.dart';
 import 'package:get/get.dart';
 
 // Import the firebase_core and cloud_firestore plugin
@@ -17,17 +18,22 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AddFoodEntryController extends GetxController {
   //TODO: Implement AddFoodEntryController
+  HomeController homeController = Get.put(HomeController());
 
   final count = 0.obs;
+  //text controller
   var foodName = TextEditingController();
   var calories = TextEditingController();
   var fat = TextEditingController();
   var carbohydrates = TextEditingController();
+  //image files
   Rx<String> uploadedImageUrl = "".obs;
   late File uploadedImageFile;
+  // firebase services
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
+  //data model
   final foodDetailsData = FoodDetails().obs;
 
 // Create a CollectionReference called users that references the firestore collection
@@ -96,6 +102,7 @@ class AddFoodEntryController extends GetxController {
               Get.back(),
               Get.snackbar("Food Added", "Successfully added food"),
               resetFields(),
+              homeController.getFoodList(),
             })
         .catchError(
             (error) => Get.snackbar("Failed to add food", error.toString()));
